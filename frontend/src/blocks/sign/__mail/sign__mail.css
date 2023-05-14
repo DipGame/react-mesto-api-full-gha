@@ -1,0 +1,27 @@
+.sign__mail {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border: 0;
+    color: #fff;
+    border-bottom: 1px solid #CCCCCC;
+    background-color: #000000;
+    display: block;
+}
+
+@media (max-width: 669px) {
+    .sign__mail {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        width: 260px;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+}

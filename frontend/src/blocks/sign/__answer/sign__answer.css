@@ -1,0 +1,24 @@
+.sign__answer {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    color: #fff;
+    margin: auto;
+    margin-top: 15px;
+}
+
+@media (max-width: 669px) {
+    .sign__answer {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        width: 260px;
+        margin: auto;
+        margin-top: 20px;
+    }
+}

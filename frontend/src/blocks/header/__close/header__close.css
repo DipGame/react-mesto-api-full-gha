@@ -1,0 +1,11 @@
+.header__close {
+	visibility: hidden;
+    width: 0;
+}
+
+@media (max-width: 669px) {
+    .header__close {
+        margin-top: 5px;
+        visibility: hidden;
+    }
+}

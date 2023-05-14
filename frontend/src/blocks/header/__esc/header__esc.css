@@ -1,0 +1,16 @@
+.header__esc {
+    background: none;
+    color: #A9A9A9;
+    border: 0;
+    height: 10px;
+    margin: 0;
+    margin-top: 50px;
+    margin-left: 24px;
+    padding: 0;
+}
+
+@media (max-width: 669px) {
+    .header__esc {
+        visibility: hidden;
+    }
+}

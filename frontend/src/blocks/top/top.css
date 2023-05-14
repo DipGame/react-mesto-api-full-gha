@@ -1,0 +1,14 @@
+.top {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+@media (max-width: 669px) {
+    .top {
+        visibility: hidden;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+}

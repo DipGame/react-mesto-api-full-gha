@@ -1,0 +1,12 @@
+.profile {
+    max-width: 880px;
+    margin: 43px auto 0;
+    color: #FFFFFF;
+    display: flex;
+}
+
+@media (max-width: 669px) {
+    .profile {
+        flex-direction: column;
+    }
+}

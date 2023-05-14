@@ -1,0 +1,23 @@
+.place__close-button {
+    background: transparent;
+    background-image: url(../../../images/Close_Icon.svg);
+    border: 0;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: -34px;
+    top: -41px;
+}
+
+.place__close-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media (max-width: 669px) {
+    .place__close-button {
+        transform: scale(62.5%);
+        right: -3px;
+        top: -43px;
+    }
+}

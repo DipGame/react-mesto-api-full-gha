@@ -1,0 +1,10 @@
+.header__login {
+    margin-top: 50px;
+}
+
+@media (max-width: 669px) {
+    .header__login {
+        visibility: hidden;
+        width: 0;
+    }
+}

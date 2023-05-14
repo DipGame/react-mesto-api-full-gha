@@ -1,0 +1,10 @@
+.element__image {
+    width: 282px;
+    height: 282px;
+    border-radius: 0;
+    margin: 0;
+}
+
+.element__image:hover {
+    cursor: pointer;
+}

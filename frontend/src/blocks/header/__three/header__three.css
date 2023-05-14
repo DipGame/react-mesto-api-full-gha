@@ -1,0 +1,13 @@
+.header__three {
+	visibility: hidden;
+    width: 0;
+}
+
+@media (max-width: 669px) {
+    .header__three {
+        margin-top: 32px;
+        width: 24px;
+        height: 18px;
+        visibility: hidden;
+    }
+}

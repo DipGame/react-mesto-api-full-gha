@@ -1,0 +1,15 @@
+.success__lable {
+    width: 120px;
+    margin: auto;
+    padding: 0;
+    margin-top: 60px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 669px) {
+    .success__lable {
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+}

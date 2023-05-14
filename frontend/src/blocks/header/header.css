@@ -1,0 +1,14 @@
+.header {
+    margin: auto;
+    max-width: 880px;
+    height: 119px;
+    border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+    display: flex; 
+}
+
+@media (max-width: 669px) {
+    .header {
+        height: 84px;
+        border-top: 1px solid rgb(84, 84, 84, 0.7);
+    }
+}

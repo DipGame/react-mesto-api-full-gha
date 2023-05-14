@@ -1,0 +1,21 @@
+.element__like_active {
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    left: auto;
+    right: 1px;
+    background-repeat: no-repeat;
+    background-image: url(../../../../images/Union.png);
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+}
+
+.element__like_active:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.element__like_active:active {
+    background-image: url(../../../../images/like.svg);
+}

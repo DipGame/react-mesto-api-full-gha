@@ -1,0 +1,23 @@
+.avatar {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    z-index: 3;
+    position: relative;
+}
+
+@media (min-width: 670px) {
+    .avatar {
+        margin: 195px auto 0;
+        width: 430px;
+        height: 272px;
+    }
+}
+
+@media (max-width: 669px) {
+    .avatar {
+        margin: 123px auto 0;
+        width: 282px;
+        height: 202px;
+    }
+}

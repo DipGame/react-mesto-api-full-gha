@@ -1,0 +1,6 @@
+.sign__form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}

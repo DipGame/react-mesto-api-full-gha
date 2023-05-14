@@ -1,0 +1,14 @@
+.avatar__button {
+    margin: auto auto 80px;
+}
+
+@media (max-width: 669px) {
+    .avatar__button {
+        width: 238px;
+        height: 46px;
+        margin-top: auto;
+        margin-bottom: 130px;
+        padding: 0;
+        display: block;
+    }
+}

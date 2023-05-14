@@ -1,0 +1,21 @@
+.ask__set {
+    border: 0 none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+}
+
+@media (min-width: 670px) {
+    .ask__set {
+        width: 402px;
+        height: 161px;
+    }
+}
+
+@media (max-width: 669px) {
+    .ask__set {
+        width: 230px;
+        height: 98px;
+    }
+}

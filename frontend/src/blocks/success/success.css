@@ -1,0 +1,12 @@
+.success {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+@media (max-width: 669px) {
+    .success {
+        width: 280px;
+        height: 308px;
+    }
+}

@@ -1,0 +1,22 @@
+.footer__copyright {
+    color: #545454;
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 400;
+}
+
+@media (min-width: 670px) {
+    .footer__copyright {
+        margin: 69px 0 60px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 669px) {
+    .footer__copyright {
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 19px;
+        margin-top: 55px;
+    }
+}
