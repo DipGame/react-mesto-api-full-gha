@@ -1,7 +1,6 @@
 import * as RegisterAuth from '../utils/RegisterAuth.js';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../images/Vector.svg';
 import Header from './Header.js';
 
 export default function Register(props) {
@@ -27,11 +26,13 @@ export default function Register(props) {
         console.log('hiSub');
         RegisterAuth.register(formValue.email, formValue.password)
             .then((data) => {
+                console.log(formValue.email);
                 props.good();
                 console.log(data);
                 navigate('/sign-in', { replace: true });
             })
             .catch((err) => {
+                console.log(formValue.email);
                 console.log(err)
                 props.noGood();
             })

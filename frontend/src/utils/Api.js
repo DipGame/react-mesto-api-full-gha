@@ -91,9 +91,9 @@ export default class Api {
 const configApi = {
     url: "https://mesto.nomoreparties.co",
     headers: {
-      authorization: '857bdf83-dc02-40c2-8f07-47f065018f5b',
-      'Content-Type': 'application/json'
+        authorization: '857bdf83-dc02-40c2-8f07-47f065018f5b',
+        'Content-Type': 'application/json'
     },
-  }
+}
 
-  export const api = new Api(configApi);
+export const api = new Api(configApi);
