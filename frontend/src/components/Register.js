@@ -26,13 +26,11 @@ export default function Register(props) {
         console.log('hiSub');
         RegisterAuth.register(formValue.email, formValue.password)
             .then((data) => {
-                console.log(formValue.email);
                 props.good();
                 console.log(data);
                 navigate('/sign-in', { replace: true });
             })
             .catch((err) => {
-                console.log(formValue.email);
                 console.log(err)
                 props.noGood();
             })
