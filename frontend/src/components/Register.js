@@ -28,7 +28,7 @@ export default function Register(props) {
             .then((data) => {
                 props.good();
                 console.log(data);
-                navigate('/sign-in', { replace: true });
+                // navigate('/sign-in', { replace: true });
             })
             .catch((err) => {
                 console.log(err)

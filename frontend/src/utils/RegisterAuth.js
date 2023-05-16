@@ -1,11 +1,8 @@
-export const BASE_URL = 'http://localhost:2999';
+export const BASE_URL = 'http://api.ivachev.k.f.students.nomoredomains.monster';
 
 export const register = (userEmail, userPass) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify({
       password: userPass,
       email: userEmail
@@ -14,9 +11,7 @@ export const register = (userEmail, userPass) => {
     .then((res) => {
       return res+'hi';
     })
-    .catch((err) => {
-      console.log(err+'hihihih');
-    })
+    .catch(checkResponse())
 };
 
 function checkResponse() {
