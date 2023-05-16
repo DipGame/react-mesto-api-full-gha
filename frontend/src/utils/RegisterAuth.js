@@ -3,6 +3,9 @@ export const BASE_URL = 'http://api.ivachev.k.f.students.nomoredomains.monster';
 export const register = (userEmail, userPass) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       password: userPass,
       email: userEmail
