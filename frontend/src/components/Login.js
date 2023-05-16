@@ -7,8 +7,6 @@ import Header from './Header.js';
 
 export default function Login({ handleLogin, ...props }) {
 
-  const BASE_URL = 'https://auth.nomoreparties.co';
-
   const [formValue, setFormValue] = useState({
     email: '',
     password: '',
@@ -30,7 +28,8 @@ export default function Login({ handleLogin, ...props }) {
     console.log('hiSudb');
     RegisterAuth.authorize(formValue.email, formValue.password)
       .then((data) => {
-        if (data.token) {
+        console.log(data);
+        if (data) {
           props.good();
           props.onSelectMail(formValue.email);
           setFormValue({ email: '', password: '' });
