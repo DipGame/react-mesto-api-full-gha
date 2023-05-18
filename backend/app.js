@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors')
 const { CustomError, NOT_FOUND, INTERNAL_SERVERE_ERROR } = require('./errors/errors');
 const router = require('./routes');
 
@@ -19,13 +20,7 @@ app.get('/crash-test', () => {
 });
 
 // eslint-disable-next-line consistent-return
-app.use((req, res, next) => {
-  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-  res.header('Access-Control-Allow-Headers', 'Content-type');
-  next();
-});
+app.use(cors());
 
 app.use(router);
 
