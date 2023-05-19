@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const cors = require('cors')
+const cors = require('cors');
 const { CustomError, NOT_FOUND, INTERNAL_SERVERE_ERROR } = require('./errors/errors');
 const router = require('./routes');
 
@@ -18,6 +18,8 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+app.use('/static', express.static('static'));
 
 // eslint-disable-next-line consistent-return
 app.use(cors());

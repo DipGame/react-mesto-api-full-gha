@@ -7,6 +7,7 @@ export default function Card(props) {
   const card = props.card;
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some(i => i._id === currentUser._id);
+  console.log(isLiked);
   const cardLikeButtonClassName = (
     `element__like ${isLiked && 'element__like_active'}`
   );;

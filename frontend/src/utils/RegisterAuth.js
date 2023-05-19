@@ -11,9 +11,7 @@ export const register = (userEmail, userPass) => {
       email: userEmail
     })
   })
-    .then((res) => {
-      return res+'hi';
-    })
+    .then(response => response.json())
     .catch(checkResponse())
 };
 
@@ -29,25 +27,28 @@ function checkResponse() {
 export const authorize = (userEmail, userPass) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       password: userPass,
       email: userEmail
     })
   })
-    .catch((err) => {
-      console.log(err);
-    })
+    .then(response => response.json())
+    .catch(checkResponse())
 };
 
 export const checkToken = (token) => {
-  return fetch(`api.ivachev.k.f.students.nomoredomains.monster/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
-    .then(data => data)
+  .then(response => response.json())
     .catch((err) => {
       console.log(err);
     })

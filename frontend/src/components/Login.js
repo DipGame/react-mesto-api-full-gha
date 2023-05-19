@@ -25,17 +25,16 @@ export default function Login({ handleLogin, ...props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('hiSudb');
+    console.log('Вы вошли');
     RegisterAuth.authorize(formValue.email, formValue.password)
       .then((data) => {
-        console.log(data);
-        if (data) {
+        if (data.token) {
+          localStorage.setItem('jwt', data.token);
           props.good();
           props.onSelectMail(formValue.email);
           setFormValue({ email: '', password: '' });
-          navigate('/', { replace: true });
-          localStorage.setItem('jwt', data.token);
           handleLogin();
+          navigate('/', { replace: true });
           return data;
         }
       })

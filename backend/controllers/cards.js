@@ -35,6 +35,7 @@ const putLikesCard = (req, res, next) => {
       }
       Card.findByIdAndUpdate({ _id: cardId }, { $addToSet: { likes: id } }, { new: true })
         .orFail()
+        .populate(['owner', 'likes'])
         .then((like) => {
           res.send(like);
         })
@@ -47,6 +48,7 @@ const deleteLikesCard = (req, res, next) => {
   const id = req.user._id;
   const { cardId } = req.params;
   Card.findById(cardId)
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         next(new CustomError(NOT_FOUND, 'Карточка не найдена'));

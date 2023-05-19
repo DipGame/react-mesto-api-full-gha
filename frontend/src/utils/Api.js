@@ -14,14 +14,14 @@ export default class Api {
     }
 
     getAllCards() {
-        return fetch(`${this._url}/v1/cohort-58/cards`, {
+        return fetch(`${this._url}/cards`, {
             headers: this._headers
         })
             .then(this._checkResponse())
     }
 
     getUserInfo() {
-        return fetch(`${this._url}/v1/cohort-58/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             headers: this._headers
         })
             .then(this._checkResponse())
@@ -29,7 +29,7 @@ export default class Api {
     }
 
     createNewCard(data) {
-        return fetch(`${this._url}/v1/cohort-58/cards`, {
+        return fetch(`${this._url}/cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify({
@@ -41,7 +41,7 @@ export default class Api {
     }
 
     setUserInfo(data) {
-        return fetch(`${this._url}/v1/cohort-58/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             headers: this._headers,
             method: 'PATCH',
             body: JSON.stringify({
@@ -53,7 +53,7 @@ export default class Api {
     }
 
     createNewAvatar(data) {
-        return fetch(`${this._url}/v1/cohort-58/users/me/avatar`, {
+        return fetch(`${this._url}/users/me/avatar`, {
             headers: this._headers,
             method: 'PATCH',
             body: JSON.stringify({
@@ -65,13 +65,13 @@ export default class Api {
 
     changeLikeCard(id, idCard) {
         if (idCard === true) {
-            return fetch(`${this._url}/v1/cohort-58/cards/${id}/likes`, {
+            return fetch(`${this._url}/cards/${id}/likes`, {
                 headers: this._headers,
                 method: 'DELETE',
             })
                 .then(this._checkResponse())
         } else {
-            return fetch(`${this._url}/v1/cohort-58/cards/${id}/likes`, {
+            return fetch(`${this._url}/cards/${id}/likes`, {
                 headers: this._headers,
                 method: 'PUT',
             })
@@ -80,7 +80,7 @@ export default class Api {
     }
 
     deleteCards(id) {
-        return fetch(`${this._url}/v1/cohort-58/cards/${id}`, {
+        return fetch(`${this._url}/cards/${id}`, {
             headers: this._headers,
             method: 'DELETE',
         })
@@ -88,11 +88,12 @@ export default class Api {
     }
 }
 
-const configApi = {
-    url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-    headers: {
-        'Content-Type': 'application/json'
-    },
-}
+// const configApi = {
+//     url: "http://api.ivachev.k.f.students.nomoredomains.monster",
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+//     },
+// }
 
-export const api = new Api(configApi);
+// export const api = new Api(configApi);
