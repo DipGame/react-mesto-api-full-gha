@@ -9,6 +9,7 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: id })
+    .populate(['owner', 'likes'])
     .then((newCard) => {
       res.status(CREATED).send(newCard);
     })
