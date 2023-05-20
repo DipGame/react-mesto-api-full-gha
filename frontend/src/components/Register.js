@@ -24,7 +24,6 @@ export default function Register(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log('hiSub');
         RegisterAuth.register(formValue.email, formValue.password)
             .then((data) => {
                 props.good();

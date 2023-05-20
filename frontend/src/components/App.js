@@ -28,6 +28,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedConfigApi, setSelectedConfigApi] = useState({});
   const [currentUser, setCurrentUser] = React.useState({
     avatar: '',
     name: '',
@@ -109,7 +110,7 @@ function App() {
     api.changeLikeCard(card._id, isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        const lol = (state) => {return state.map((c) => c._id === card._id ? newCard : c)}
+        const lol = (state) => { return state.map((c) => c._id === card._id ? newCard : c) }
         console.log(newCard);
       })
       .catch((err) => console.log(err));

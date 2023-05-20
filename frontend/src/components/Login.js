@@ -29,7 +29,6 @@ export default function Login({ handleLogin, ...props }) {
     RegisterAuth.authorize(formValue.email, formValue.password)
       .then((data) => {
         if (data.token) {
-          console.log(data.token);
           props.good();
           props.onSelectMail(formValue.email);
           setFormValue({ email: '', password: '' });

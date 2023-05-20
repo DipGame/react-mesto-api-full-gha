@@ -4,6 +4,7 @@ export const register = (userEmail, userPass) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -12,7 +13,7 @@ export const register = (userEmail, userPass) => {
     })
   })
     .then(response => response.json())
-    .then(checkResponse())
+    .catch(checkResponse())
 };
 
 function checkResponse() {
