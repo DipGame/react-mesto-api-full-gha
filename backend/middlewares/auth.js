@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { CustomError, UNAUTHORIZED } = require('../errors/errors');
 
@@ -14,7 +15,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'super-strong-secret');
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {
     next(new CustomError(UNAUTHORIZED, 'Необходима авторизация'));
     return;
