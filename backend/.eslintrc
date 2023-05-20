@@ -8,7 +8,9 @@
     ],
     "no-const-assign": [
       "error"
-    ]
+    ],
+    "consistent-return": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "extends": "airbnb-base"
 }
