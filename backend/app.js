@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const { requestLogger, errorLogger } = require('./middlewares/Logger');
 const { CustomError, NOT_FOUND, INTERNAL_SERVERE_ERROR } = require('./errors/errors');
 const router = require('./routes');
 
@@ -21,14 +22,17 @@ app.get('/crash-test', () => {
 
 app.use('/static', express.static('static'));
 
-// eslint-disable-next-line consistent-return
 app.use(cors());
+
+app.use(requestLogger);
 
 app.use(router);
 
 app.use('*', (req, res, next) => {
   next(new CustomError(NOT_FOUND, 'Страница не найдена'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 

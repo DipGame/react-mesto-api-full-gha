@@ -6,7 +6,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.109.238
+IP 51.250.109.238
 
 Frontend https://ivachev.k.f.students.nomoredomains.monster
 
