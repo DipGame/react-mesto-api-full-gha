@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.ivachev.k.f.students.nomoredomains.monster';
+export const BASE_URL = 'https://api.ivachev.k.f.students.nomoredomains.monster';
 
 export const register = (userEmail, userPass) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -12,7 +12,7 @@ export const register = (userEmail, userPass) => {
     })
   })
     .then(response => response.json())
-    .catch(checkResponse())
+    .then(checkResponse())
 };
 
 function checkResponse() {

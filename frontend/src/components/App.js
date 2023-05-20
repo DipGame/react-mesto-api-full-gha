@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import { Routes, Route, Navigate, useNavigate, Outlet } from 'react-router-dom';
 import * as RegisterAuth from '../utils/RegisterAuth.js';
-import Api from '../utils/Api.js';
+import { api } from '../utils/Api.js';
 import Login from './Login.js';
 import Register from './Register.js';
 import Main from './Main.js';
@@ -28,7 +28,6 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [selectedToken, setSelectedToken] = useState('');
   const [currentUser, setCurrentUser] = React.useState({
     avatar: '',
     name: '',
@@ -89,74 +88,34 @@ function App() {
   }
 
   useEffect(() => {
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api
       .getUserInfo()
       .then((data) => {
         setCurrentUser(data);
       })
       .catch((err) => console.log(err))
-  }, [loggedIn]);
+  }, []);
 
   useEffect(() => {
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api.getAllCards()
       .then((data) => {
         setCards(data)
       })
       .catch((err) => console.log(err))
-  }, [loggedIn])
+  }, [])
 
   function handleCardLike(card) {
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    console.log(isLiked);
     api.changeLikeCard(card._id, isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        const lol = (state) => {return state.map((c) => c._id === card._id ? newCard : c)}
         console.log(newCard);
-        console.log('hi api');
       })
       .catch((err) => console.log(err));
   }
 
   function handleUpdateUser({ name, about }) {
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api.setUserInfo({
       name: name,
       about: about,
@@ -169,16 +128,6 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api.deleteCards(card._id)
       .then((data) => {
         setCards(prevState => prevState.filter((item) => item._id !== card._id))
@@ -188,16 +137,6 @@ function App() {
 
   function handleUpdateAvatar(avatar) {
     console.log(avatar);
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api.createNewAvatar(avatar)
       .then((res) => {
         setCurrentUser(res);
@@ -207,22 +146,13 @@ function App() {
   }
 
   function handleAddPlaceSubmit({ name, link }) {
-    setSelectedToken(localStorage.getItem('jwt'));
-    const configApi = {
-      url: "http://api.ivachev.k.f.students.nomoredomains.monster",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      },
-    }
-
-    const api = new Api(configApi);
     api.createNewCard({
       name: name,
       link: link
     })
       .then((data) => {
         const newCard = data;
+        console.log(newCard);
         setCards([newCard, ...cards]);
         closeAllPopups();
       })

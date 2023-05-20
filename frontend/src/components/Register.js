@@ -1,6 +1,7 @@
 import * as RegisterAuth from '../utils/RegisterAuth.js';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../images/Vector.svg';
 import Header from './Header.js';
 
 export default function Register(props) {

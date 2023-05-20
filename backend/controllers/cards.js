@@ -16,7 +16,7 @@ const createCard = (req, res, next) => {
 };
 
 const getAllCards = (req, res, next) => {
-  Card.find()
+  Card.find().sort({ createAt: -1 })
     .populate(['owner', 'likes'])
     .then((cards) => {
       res.send(cards);

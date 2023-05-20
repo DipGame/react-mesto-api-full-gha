@@ -64,15 +64,15 @@ export const avatarButtonForm = avatarOverlay.querySelector('.popup__save-button
 export const configApi = {
     url: "https://mesto.nomoreparties.co",
     headers: {
-        authorization: '857bdf83-dc02-40c2-8f07-47f065018f5b',
-        'Content-Type': 'application/json'
+      authorization: '857bdf83-dc02-40c2-8f07-47f065018f5b',
+      'Content-Type': 'application/json'
     },
-}
+  }
 
-export const enableValidation = {
+  export const enableValidation = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'button_inactive',
     inputErrorClass: 'form__input_type_error',
     errorClass: 'popup__input-error_active'
-};
+  };
