@@ -13,7 +13,7 @@ export const register = (userEmail, userPass) => {
     })
   })
     .then(response => response.json())
-    .catch(checkResponse()) 
+    .catch(checkResponse())
 };
 
 function checkResponse() {
