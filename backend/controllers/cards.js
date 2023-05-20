@@ -1,7 +1,7 @@
 const Card = require('../models/card');
 
 const {
-  NOT_FOUND, CREATED, FORBIDDEN, CustomError,
+  NOT_FOUND, CREATED, FORBIDDEN, CustomError, BAD_REQUEST,
 } = require('../errors/errors');
 
 const createCard = (req, res, next) => {
@@ -12,7 +12,13 @@ const createCard = (req, res, next) => {
     .then((newCard) => {
       res.status(CREATED).send(newCard);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new CustomError(BAD_REQUEST, 'Некорректные данные при создании карточки'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 const getAllCards = (req, res, next) => {
@@ -31,7 +37,7 @@ const putLikesCard = (req, res, next) => {
   Card.findById(cardId)
     .then((card) => {
       if (!card) {
-        next(new CustomError(NOT_FOUND, 'Карточка не найдена'));
+        return next(new CustomError(NOT_FOUND, 'Карточка не найдена'));
       }
       Card.findByIdAndUpdate({ _id: cardId }, { $addToSet: { likes: id } }, { new: true })
         .orFail()
@@ -51,7 +57,7 @@ const deleteLikesCard = (req, res, next) => {
     .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
-        next(new CustomError(NOT_FOUND, 'Карточка не найдена'));
+        return next(new CustomError(NOT_FOUND, 'Карточка не найдена'));
       }
       Card.findByIdAndUpdate({ _id: cardId }, { $pull: { likes: id } }, { new: true })
         .orFail()

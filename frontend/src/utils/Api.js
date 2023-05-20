@@ -87,13 +87,3 @@ export default class Api {
             .then(this._checkResponse())
     }
 }
-
-const configApi = {
-    url: "https://api.ivachev.k.f.students.nomoredomains.monster",
-    headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-        'Content-Type': 'application/json'
-    },
-}
-
-export const api = new Api(configApi);

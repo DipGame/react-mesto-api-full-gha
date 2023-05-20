@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const {
-  NOT_FOUND, CREATED, UNAUTHORIZED, CONFLICT, OK, CustomError,
+  NOT_FOUND, CREATED, UNAUTHORIZED, CONFLICT, OK, CustomError, BAD_REQUEST,
 } = require('../errors/errors');
 
 const createUser = (req, res, next) => {
@@ -27,6 +27,8 @@ const createUser = (req, res, next) => {
         .catch((err) => {
           if (err.errors.email.kind === 'unique') {
             next(new CustomError(CONFLICT, 'Пользователь уже существует'));
+          } if (err.name === 'ValidationError') {
+            next(new CustomError(BAD_REQUEST, 'Некорректные данные при создании пользователя'));
           } else {
             next(err);
           }
@@ -47,7 +49,7 @@ const login = (req, res, next) => {
       bcrypt.compare(password, user.password)
         .then((fff) => {
           if (!fff) {
-            next(new CustomError(UNAUTHORIZED, 'Пароль или Email неверные'));
+            return next(new CustomError(UNAUTHORIZED, 'Пароль или Email неверные'));
           }
           const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
           res.status(OK).send({ token });
@@ -97,7 +99,13 @@ const patchUser = (req, res, next) => {
     .then((user) => {
       res.send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new CustomError(BAD_REQUEST, 'Введены некорректные данные'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 const patchAvatar = (req, res, next) => {
@@ -108,7 +116,13 @@ const patchAvatar = (req, res, next) => {
     .then((updateUser) => {
       res.send(updateUser);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new CustomError(BAD_REQUEST, 'Введены некорректные данные'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports = {

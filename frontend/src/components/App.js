@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import { Routes, Route, Navigate, useNavigate, Outlet } from 'react-router-dom';
 import * as RegisterAuth from '../utils/RegisterAuth.js';
-import { api } from '../utils/Api.js';
+import Api from '../utils/Api.js';
 import Login from './Login.js';
 import Register from './Register.js';
 import Main from './Main.js';
@@ -34,6 +34,16 @@ function App() {
     name: '',
     about: '',
   });
+
+  const configApi = {
+    url: "https://api.ivachev.k.f.students.nomoredomains.monster",
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json'
+    },
+  }
+
+  const api = new Api(configApi);
 
   const navigate = useNavigate();
 
@@ -95,7 +105,7 @@ function App() {
         setCurrentUser(data);
       })
       .catch((err) => console.log(err))
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     api.getAllCards()
@@ -103,7 +113,7 @@ function App() {
         setCards(data)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [loggedIn])
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
